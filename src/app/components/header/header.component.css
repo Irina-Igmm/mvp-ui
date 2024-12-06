@@ -1,30 +1,104 @@
-mat-toolbar {
+/* header.component.scss */
+.custom-toolbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 64px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 70px;
+  background: linear-gradient(135deg, #c2185b 0%, #8c1d5b 100%);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .logo-icon {
+    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    color: white;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.5px;
+  }
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-nav {
+.navigation {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
-button {
-  transition: background-color 0.3s ease;
+.nav-button {
+  position: relative;
+  color: white;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    background-color: rgba(255,255,255,0.1);
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  mat-icon {
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover mat-icon {
+    transform: scale(1.1);
+  }
 }
 
-button:hover {
-  background-color: rgba(255,255,255,0.1);
-}
 
-mat-icon {
-  margin-right: 8px;
+@media (max-width: 600px) {
+  .toolbar-content {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 16px;
+  }
+
+  .logo-container {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,39 +1,65 @@
 <!-- chatbot.component.html -->
-<mat-card class="chatbot-container" *ngIf="isChatbotVisible">
-  <mat-card-header class="chatbot-header">
-    <mat-card-title>Chat with us!</mat-card-title>
-    <button mat-icon-button (click)="toggleChatbot()">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-card-header>
+<div class="chatbot-container">
+  <!-- Bouton de toggle -->
+  <button
+    mat-fab
+    color="primary"
+    class="chatbot-toggle"
+    (click)="toggleChatbot()"
+    [@chatbotToggle]
+  >
+    <mat-icon>{{ isChatbotVisible ? 'close' : 'chat' }}</mat-icon>
+  </button>
 
-  <mat-card-content>
-    <div class="chatbot-messages" #messageContainer>
-      <mat-card *ngFor="let message of messages" 
-                [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+  <!-- Fenêtre de chat -->
+  <mat-card
+    *ngIf="isChatbotVisible"
+    class="chat-window"
+    [@chatbotToggle]
+  >
+    <!-- En-tête du chat -->
+    <mat-card-header class="chat-header">
+      <mat-card-title style="color: white;">Chat avec nous</mat-card-title>
+      <button mat-icon-button (click)="toggleChatbot()">
+        <mat-icon style="color: white;">close</mat-icon>
+      </button>
+    </mat-card-header>
+
+    <!-- Zone des messages -->
+    <div #messagesContainer class="messages-container">
+      <mat-card
+        *ngFor="let message of messages"
+        [@messageAnimation]
+        [ngClass]="{
+          'user-message': message.type === 'user',
+          'bot-message': message.type === 'bot'
+        }"
+      >
         <mat-card-content>
           {{ message.text }}
         </mat-card-content>
       </mat-card>
     </div>
-  </mat-card-content>
 
-  <mat-card-actions>
-    <mat-form-field appearance="outline" class="message-input">
-      <input matInput
-             [(ngModel)]="userMessage"
-             (keydown.enter)="sendMessage()"
-             placeholder="Type your message..."
-             autocomplete="off">
-    </mat-form-field>
-    <button mat-fab color="primary" (click)="sendMessage()">
-      <mat-icon>send</mat-icon>
-    </button>
-  </mat-card-actions>
-</mat-card>
-
-<button mat-fab color="primary" 
-        class="chatbot-toggle" 
-        (click)="toggleChatbot()">
-  <mat-icon>chat</mat-icon>
-</button>
+    <!-- Input de message -->
+    <mat-card-actions class="message-input-container">
+      <mat-form-field appearance="outline" class="message-input">
+        <input
+          matInput
+          [(ngModel)]="userMessage"
+          (keydown.enter)="sendMessage()"
+          placeholder="Écrivez votre message..."
+          autocomplete="off"
+        >
+      </mat-form-field>
+      <button
+        mat-fab
+        color="primary"
+        (click)="sendMessage()"
+        class="send-button"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

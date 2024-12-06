@@ -1,18 +1,24 @@
-<mat-toolbar color="primary">
-  <span>Cabinet d'étude spécialisée</span>
-  <span class="spacer"></span>
-  <nav>
-    <button mat-button routerLink="/">
-      <mat-icon>home</mat-icon>
-      Accueil
-    </button>
-      <!-- <button mat-button routerLink="/services">
-        <mat-icon>build</mat-icon>
-        Services
-      </button> -->
-    <button mat-button routerLink="/contact">
-      <mat-icon>contact_mail</mat-icon>
-      Contact
-    </button>
-  </nav>
+<!-- header.component.html -->
+<mat-toolbar class="custom-toolbar">
+  <div class="toolbar-content">
+    <div class="logo-container">
+      <mat-icon class="logo-icon">energy_savings_leaf</mat-icon>
+      <span class="title">{{ title }}</span>
+    </div>
+
+    <span class="spacer"></span>
+
+    <nav class="navigation">
+      <ng-container *ngFor="let link of navLinks">
+        <button
+          mat-button
+          [routerLink]="link.route"
+          class="nav-button"
+        >
+          <mat-icon>{{ link.icon }}</mat-icon>
+          {{ link.label }}
+        </button>
+      </ng-container>
+    </nav>
+  </div>
 </mat-toolbar>

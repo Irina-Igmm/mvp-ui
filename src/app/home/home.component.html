@@ -1,57 +1,154 @@
 <!-- home.component.html -->
-<!-- Hero Section -->
-<section class="hero">
-  <mat-card class="hero-content">
-    <mat-card-content>
-      <h1>Cabinet d'Étude en Audit Énergétique</h1>
-      <p>Optimisez votre consommation énergétique avec nos experts certifiés</p>
-      <button mat-raised-button color="primary" routerLink="/contact">
-        Demander un audit
-      </button>
-    </mat-card-content>
-  </mat-card>
-</section>
+<div class="home-page">
+  <div class="home-container">
+    <!-- Left Sidebar -->
+    <div class="sidebar left-sidebar">
+      <div class="sidebar-content">
+        <div class="quick-links">
+          <h3>Liens Rapides</h3>
+          <ul>
+            <li>
+              <mat-icon>assessment</mat-icon>
+              Rapport Énergétique
+            </li>
+            <li>
+              <mat-icon>eco</mat-icon>
+              Solutions Vertes
+            </li>
+            <li>
+              <mat-icon>trending_down</mat-icon>
+              Réduction des Coûts
+            </li>
+          </ul>
+        </div>
 
-<!-- Services Section -->
-<section class="services">
-  <div class="container">
-    <h2>Nos Services</h2>
-    <div class="services-grid">
-      <mat-card *ngFor="let service of services">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>{{service.icon}}</mat-icon>
-          <mat-card-title>{{service.title}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{service.description}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary">En savoir plus</button>
-        </mat-card-actions>
-      </mat-card>
+        <div class="contact-info">
+          <h3>Contactez-nous</h3>
+          <div class="contact-details">
+            <p><mat-icon>phone</mat-icon> +33 1 23 45 67 89</p>
+            <p><mat-icon>email</mat-icon> contact@auditenergetique.com</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- Call to Action -->
-<section class="cta">
-  <div class="container">
-    <h2>Passez à l'Action</h2>
-    <div class="cta-grid">
-      <mat-card>
-        <mat-card-header>
-          <mat-icon mat-card-avatar>trending_up</mat-icon>
-          <mat-card-title>Prêt à Optimiser?</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Contactez-nous pour une consultation gratuite</p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" routerLink="/contact">
-            Nous contacter
+    <div class="main-content">
+      <!-- Hero Section avec Animation -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-overlay">
+            <h1 class="hero-title">Optimisez Votre Performance Énergétique</h1>
+            <p class="hero-subtitle">
+              Solutions innovantes pour une efficacité énergétique durable
+            </p>
+            <div class="hero-cta">
+              <button mat-raised-button color="primary" class="cta-button">
+                Découvrir nos services
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="services container">
+        <div class="section-header">
+          <h2>Nos Services</h2>
+          <p style="color: brown">
+            Des solutions sur-mesure pour votre performance énergétique
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <mat-card *ngFor="let service of services" class="service-card">
+            <div class="service-card-content">
+              <div class="service-icon-wrapper">
+                <mat-icon class="service-icon">{{ service.icon }}</mat-icon>
+              </div>
+              <h3 class="service-title">{{ service.title }}</h3>
+              <p class="service-description">{{ service.description }}</p>
+              <button mat-stroked-button color="primary" class="service-button">
+                En savoir plus
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </section>
+
+      <!-- Processus Section -->
+      <section class="process container">
+        <div class="section-header">
+          <h2>Notre Approche</h2>
+          <p>Un processus transparent et personnalisé</p>
+        </div>
+
+        <div class="process-steps">
+          <div
+            class="process-step"
+            *ngFor="let step of processSteps; let i = index"
+          >
+            <div class="step-number">{{ i + 1 }}</div>
+            <div class="step-content">
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta">
+        <div class="cta-content">
+          <h2>Prêt à Optimiser Votre Efficacité Énergétique ?</h2>
+          <p>Contactez-nous pour un diagnostic personnalisé</p>
+          <button mat-raised-button color="accent" class="cta-button">
+            Demander un rendez-vous
+            <mat-icon>calendar_today</mat-icon>
           </button>
-        </mat-card-actions>
-      </mat-card>
+        </div>
+      </section>
+    </div>
+
+    <div class="sidebar right-sidebar">
+      <div class="sidebar-content">
+        <div class="energy-stats">
+          <h3>Statistiques Énergétiques</h3>
+          <div class="stat-card">
+            <mat-icon>show_chart</mat-icon>
+            <div class="stat-details">
+              <h4>Économies Potentielles</h4>
+              <p>Jusqu'à 30% de réduction</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <mat-icon>thermostat</mat-icon>
+            <div class="stat-details">
+              <h4>Impact Carbone</h4>
+              <p>-15 tonnes CO2/an</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-projects">
+          <h3>Projets Récents</h3>
+          <ul>
+            <li>
+              <mat-icon>business</mat-icon>
+              Bureau Écologique Paris
+            </li>
+            <li>
+              <mat-icon>factory</mat-icon>
+              Usine Verte Lyon
+            </li>
+            <li>
+              <mat-icon>school</mat-icon>
+              Campus Énergie Positive
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</div>

@@ -1,40 +1,91 @@
-<!-- contact.component.html -->
-<mat-card class="contact-card">
-  <mat-card-header>
-    <mat-icon mat-card-avatar>contact_mail</mat-icon>
-    <mat-card-title>Contactez-nous</mat-card-title>
-    <mat-card-subtitle>Nous sommes là pour vous aider</mat-card-subtitle>
-  </mat-card-header>
-  
-  <mat-card-content>
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
-      <mat-form-field appearance="outline">
-        <mat-label>Nom</mat-label>
-        <input matInput type="text" required [(ngModel)]="name" name="name" #nameInput="ngModel">
-        <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-          Le nom est requis
-        </mat-error>
-      </mat-form-field>
+<div class="contact-page">
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-header">
+        <h1>Contactez notre équipe</h1>
+        <p>Nous sommes à votre écoute pour toute question ou projet</p>
+      </div>
+      <div class="contact-details">
+        <div class="contact-method">
+          <mat-icon>phone</mat-icon>
+          <div>
+            <h3>Téléphone</h3>
+            <p>+33 1 23 45 67 89</p>
+          </div>
+        </div>
+        <div class="contact-method">
+          <mat-icon>email</mat-icon>
+          <div>
+            <h3>E-mail</h3>
+            <p>contact@auditenergetique.com</p>
+          </div>
+        </div>
+        <div class="contact-method">
+          <mat-icon>location_on</mat-icon>
+          <div>
+            <h3>Adresse</h3>
+            <p>15 Rue de l'Innovation, 75008 Paris</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>E-mail</mat-label>
-        <input matInput type="email" required [(ngModel)]="email" name="email" email #emailInput="ngModel">
-        <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
-          Veuillez entrer une adresse e-mail valide
-        </mat-error>
-      </mat-form-field>
+    <div class="contact-form-section">
+      <mat-card class="contact-card">
+        <mat-card-content>
+          <form (ngSubmit)="onSubmit()" class="contact-form">
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="name" name="name" required>
+                <mat-error>Le nom est requis</mat-error>
+              </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Message</mat-label>
-        <textarea matInput rows="4" required [(ngModel)]="message" name="message" #messageInput="ngModel"></textarea>
-        <mat-error *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)">
-          Le message est requis
-        </mat-error>
-      </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput [(ngModel)]="email" name="email" email required>
+                <mat-error>Veuillez entrer une adresse e-mail valide</mat-error>
+              </mat-form-field>
+            </div>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.form.valid">
-        Envoyer
-      </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+            <mat-form-field appearance="outline">
+              <mat-label>Objet</mat-label>
+              <input matInput [(ngModel)]="subject" name="subject" required>
+              <mat-error>L'objet est requis</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Message</mat-label>
+              <textarea matInput [(ngModel)]="message" name="message" required rows="4"></textarea>
+              <mat-error>Le message est requis</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">
+              Envoyer le message
+              <mat-icon>send</mat-icon>
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <div class="faq-container">
+      <h2 class="faq-title">Questions Fréquentes</h2>
+      <div class="faq-grid">
+        <div *ngFor="let faq of faqs; let i = index" class="faq-card">
+          <div class="faq-card-header" (click)="toggleFAQ(i)">
+            <h3>{{ faq.question }}</h3>
+            <mat-icon class="faq-toggle-icon">
+              {{ expandedFAQ === i ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+          </div>
+          <div class="faq-card-content" *ngIf="expandedFAQ === i">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
