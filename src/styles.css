@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --custom-brown: #4D4944;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --text-dark: rgba(77, 73, 68, 0.87);
+}
+
+/* Shared section styles */
+.services,
+.hero,
+.cta {
+  background-color: #5a3a22;
+  color: white;
+  padding: 4rem 0;
+  padding-top: 0;
+  /* Remove top padding */
+  margin-top: 0;
+  /* Remove top margin */
+}
+
+.services h2,
+.hero h2,
+.cta h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Grid layouts */
+.services-grid,
+.cta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.cta .container {
+  background-color: #af8d78;
+  color: white;
+}
+
+.cta-grid mat-card {
+  text-align: center;
+  background-color: white;
+}
+
+.services-grid mat-card {
+  background-color: white;
+  color: white;
+}
+
+/* Card styles */
+mat-card {
+  background-color: var(--card-bg);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+mat-card mat-icon {
+  color: var(--custom-brown);
+}
+
+mat-card mat-card-title {
+  color: var(--custom-brown);
+}
+
+mat-card mat-card-content {
+  color: var(--text-dark);
+}
+
+mat-card mat-card-actions button {
+  color: var(--custom-brown);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header spacing fix */
+.main-content {
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+}

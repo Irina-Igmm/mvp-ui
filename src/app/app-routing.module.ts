@@ -1,7 +1,16 @@
+// app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ServicesComponent } from './components/services/services.component';
+import { ContactComponent } from './components/contact/contact.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: '**', redirectTo: '' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

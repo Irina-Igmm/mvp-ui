@@ -1,0 +1,40 @@
+<!-- contact.component.html -->
+<mat-card class="contact-card">
+  <mat-card-header>
+    <mat-icon mat-card-avatar>contact_mail</mat-icon>
+    <mat-card-title>Contactez-nous</mat-card-title>
+    <mat-card-subtitle>Nous sommes là pour vous aider</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" required [(ngModel)]="name" name="name" #nameInput="ngModel">
+        <mat-error *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+          Le nom est requis
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input matInput type="email" required [(ngModel)]="email" name="email" email #emailInput="ngModel">
+        <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+          Veuillez entrer une adresse e-mail valide
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea matInput rows="4" required [(ngModel)]="message" name="message" #messageInput="ngModel"></textarea>
+        <mat-error *ngIf="messageInput.invalid && (messageInput.dirty || messageInput.touched)">
+          Le message est requis
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.form.valid">
+        Envoyer
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
